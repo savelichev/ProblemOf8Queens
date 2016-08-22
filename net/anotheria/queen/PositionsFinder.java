@@ -10,21 +10,12 @@ public class PositionsFinder {
 
     public static void main(String[] args) {
 
-        int ShiftToAlphabet = 65;
 
         while (positions[0] < 8) {
 
             if (isPositionValid()) {
                 if (rowIndex == 7) {
-                    System.out.println((fieldCount++) + ": "
-                            + (char) (positions[0] + ShiftToAlphabet) + "1 "
-                            + (char) (positions[1] + ShiftToAlphabet) + "2 "
-                            + (char) (positions[2] + ShiftToAlphabet) + "3 "
-                            + (char) (positions[3] + ShiftToAlphabet) + "4 "
-                            + (char) (positions[4] + ShiftToAlphabet) + "5 "
-                            + (char) (positions[5] + ShiftToAlphabet) + "6 "
-                            + (char) (positions[6] + ShiftToAlphabet) + "7 "
-                            + (char) (positions[7] + ShiftToAlphabet) + "8 ");
+                    printCurrentPositions();
                     positions[rowIndex]++;
                 } else {
                     rowIndex++;
@@ -54,6 +45,20 @@ public class PositionsFinder {
             }
         }
         return true;
+    }
+
+    private static void printCurrentPositions() {
+        int shiftToAlphabet = 97;
+
+        System.out.println((fieldCount++) + ": "
+                + (char) (positions[0] + shiftToAlphabet) + "1 "
+                + (char) (positions[1] + shiftToAlphabet) + "2 "
+                + (char) (positions[2] + shiftToAlphabet) + "3 "
+                + (char) (positions[3] + shiftToAlphabet) + "4 "
+                + (char) (positions[4] + shiftToAlphabet) + "5 "
+                + (char) (positions[5] + shiftToAlphabet) + "6 "
+                + (char) (positions[6] + shiftToAlphabet) + "7 "
+                + (char) (positions[7] + shiftToAlphabet) + "8 ");
     }
 }
 
