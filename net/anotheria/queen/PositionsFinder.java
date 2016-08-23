@@ -6,7 +6,9 @@ public class PositionsFinder {
     private int[] positions = {0, 0, 0, 0, 0, 0, 0, 0};
 
     private int rowIndex = 0;
+
     private int fieldCount = 1;
+
 
     public void findPositions() {
 
