@@ -3,12 +3,12 @@ package net.anotheria.queen;
 public class PositionsFinder {
 
 
-    private static int[] positions = {0, 0, 0, 0, 0, 0, 0, 0};
+    private int[] positions = {0, 0, 0, 0, 0, 0, 0, 0};
 
-    private static int rowIndex = 0;
-    private static int fieldCount = 1;
+    private int rowIndex = 0;
+    private int fieldCount = 1;
 
-    public static void main(String[] args) {
+    public void findPositions() {
 
 
         while (positions[0] < 8) {
@@ -26,7 +26,7 @@ public class PositionsFinder {
         }
     }
 
-    static boolean isPositionValid() {
+    private boolean isPositionValid() {
 
         if (rowIndex == 0) {
             return true;
@@ -47,7 +47,7 @@ public class PositionsFinder {
         return true;
     }
 
-    private static void printCurrentPositions() {
+    private void printCurrentPositions() {
         int shiftToAlphabet = 97;
 
         System.out.println((fieldCount++) + ": "
