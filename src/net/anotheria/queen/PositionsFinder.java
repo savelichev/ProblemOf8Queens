@@ -1,36 +1,39 @@
 package net.anotheria.queen;
 
+/**
+ * Finds all possible combinations of the queens on the board when there no queen under attack.
+ */
 public class PositionsFinder {
 
     /**
-     * Array of queens position on board
-     * index of element is the row number, values is the column number
+     * Array of queens position on board.
+     * index of element is the row number, values is the column number.
      */
     private int[] positions = {0, 0, 0, 0, 0, 0, 0, 0};
 
     /**
-     * Index of current row
+     * Index of current row.
      */
     private int rowIndex;
 
     /**
-     * Counter of different positions combinations
+     * Counter of different positions combinations.
      */
     private int fieldCounter;
 
     /**
-     * Size of board
+     * Size of board.
      */
     private int boardSize = 8;
 
     /**
-     * Object of Field printer prints current field
+     * Object of Field printer prints current field.
      */
-    FieldPrinter fieldPrinter = new FieldPrinter();
+    private FieldPrinter fieldPrinter = new FieldPrinter();
 
 
     /**
-     * Finds all possible combinations of the queens
+     * Finds all possible combinations of the queens.
      */
     public void findPositions() {
 
@@ -38,7 +41,7 @@ public class PositionsFinder {
 
             if (isPositionValid()) {
                 if (rowIndex == boardSize - 1) {
-                    fieldPrinter.printField(positions, ++fieldCounter);
+                    fieldPrinter.printToConsole(positions, ++fieldCounter);
                     positions[rowIndex]++;
                 } else {
                     rowIndex++;
@@ -49,22 +52,18 @@ public class PositionsFinder {
         }
     }
 
-    /**
-     * checks that current position of the queen in't under attack  of other queens
-     *
-     * @return boolean value: "true" if position valid, "false" if under attack
-     */
+    //Checks that current position of the queen in't under attack  of other queens.
+    //Return boolean value: "true" if position valid, "false" if under attack.
     private boolean isPositionValid() {
 
         if (rowIndex == 0) {
             return true;
         }
 
-        /**
-         * checking is  column value bigger than board size,
-         * if true, it means that there no possible positions for queen
-         * and it needs to step back
-         */
+
+        //Checking is  column value bigger than board size,
+        //if true, it means that there no possible positions for queen
+        //and it needs to step back.
         if (positions[rowIndex] > boardSize - 1) {
             positions[rowIndex] = 0;
             rowIndex--;
@@ -72,9 +71,7 @@ public class PositionsFinder {
         }
 
 
-        /**
-         * checking that column and diagonals is not under attack
-         */
+        //Checking that column and diagonals is not under attack
         for (int i = 0; i < rowIndex; i++) {
             if ((positions[rowIndex] == positions[i])
                     || ((Math.abs(positions[rowIndex] - positions[i])) == (rowIndex - i))) {

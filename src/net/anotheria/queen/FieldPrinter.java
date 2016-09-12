@@ -1,9 +1,19 @@
 package net.anotheria.queen;
 
 
+/**
+ * Print combination of the queens and counter of combination.
+ */
 public class FieldPrinter {
 
-    public void printField(int[] positions, int fieldCount) {
+
+    /**
+     * Print into the console.
+     *
+     * @param positions  queens combination.
+     * @param fieldCount counter of combination.
+     */
+    public void printToConsole(int[] positions, int fieldCount) {
 
         System.out.println("Combination: " + fieldCount);
         int[][] board = new int[8][8];
