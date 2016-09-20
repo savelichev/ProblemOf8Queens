@@ -7,10 +7,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
 
+/**
+ * Write result into database.
+ */
 public class DBWriter implements IWriter {
 
 
-    private int fieldCounter;
+    /**
+     * Counter of combinations.
+     */
+    private int combinationCounter;
 
     /**
      * Write positions into the database.
@@ -23,12 +29,13 @@ public class DBWriter implements IWriter {
         Connection connection = connect();
 
         String result = Arrays.toString(positions);
-        fieldCounter++;
+        combinationCounter++;
+
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement("INSERT INTO positions (coordinates,field_counter) VALUES (?,?)");
             ps.setString(1, result);
-            ps.setInt(2, fieldCounter);
+            ps.setInt(2, combinationCounter);
             ps.execute();
 
         } catch (SQLException e) {
@@ -50,12 +57,8 @@ public class DBWriter implements IWriter {
 
         try {
             Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/queens", "postgres", "savelichev");
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return connection;
