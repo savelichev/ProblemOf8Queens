@@ -1,21 +1,27 @@
-package net.anotheria.queen;
+package net.anotheria.queen.writer;
 
 
 /**
- * Print combination of the queens and counter of combination.
+ * Write combination of the queens.
  */
-public class FieldPrinter {
+public class ConsoleWriter implements IWriter {
 
 
     /**
-     * Print into the console.
-     *
-     * @param positions  queens combination.
-     * @param fieldCount counter of combination.
+     * Counter of combination.
      */
-    public void printToConsole(int[] positions, int fieldCount) {
+    private int combinationCounter;
 
-        System.out.println("Combination: " + fieldCount);
+    /**
+     * Write positions into the console.
+     *  @param positions     queens combination.
+     *
+     */
+    @Override
+    public void write(int[] positions) {
+
+        System.out.println(++combinationCounter);
+
         int[][] board = new int[8][8];
 
 
@@ -33,5 +39,6 @@ public class FieldPrinter {
 
         System.out.println("   a b c d e f g h");
         System.out.println();
+
     }
 }

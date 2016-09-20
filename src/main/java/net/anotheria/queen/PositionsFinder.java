@@ -1,5 +1,9 @@
 package net.anotheria.queen;
 
+import net.anotheria.queen.writer.ConsoleWriter;
+import net.anotheria.queen.writer.DBWriter;
+import net.anotheria.queen.writer.IWriter;
+
 /**
  * Finds all possible combinations of the queens on the board when there no queen under attack.
  */
@@ -17,11 +21,6 @@ public class PositionsFinder {
     private int rowIndex;
 
     /**
-     * Counter of different positions combinations.
-     */
-    private int fieldCounter;
-
-    /**
      * Size of board.
      */
     private int boardSize = 8;
@@ -29,7 +28,7 @@ public class PositionsFinder {
     /**
      * Object of Field printer prints current field.
      */
-    private FieldPrinter fieldPrinter = new FieldPrinter();
+    private IWriter resultWriter = new DBWriter();
 
 
     /**
@@ -37,11 +36,13 @@ public class PositionsFinder {
      */
     public void findPositions() {
 
+
         while (positions[0] < boardSize) {
 
             if (isPositionValid()) {
                 if (rowIndex == boardSize - 1) {
-                    fieldPrinter.printToConsole(positions, ++fieldCounter);
+
+                    resultWriter.write(positions);
                     positions[rowIndex]++;
                 } else {
                     rowIndex++;
@@ -49,6 +50,8 @@ public class PositionsFinder {
             } else {
                 positions[rowIndex]++;
             }
+
+
         }
     }
 
